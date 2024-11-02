@@ -15,14 +15,14 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: white;
+  background-color: maroon;
   color: white;
 }
 
 th {
-    color: black;
+    color: white;
 }
 
 td {
-    color: black;
+    color: white;
 }
