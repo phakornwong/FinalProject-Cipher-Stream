@@ -14,7 +14,7 @@
             <td>Username</td>
             <td>
                 <div class="form-floating">
-                    <input asp-for="Input.UserName" class="form" autocomplete="username" aria-required="true" />
+                    <input asp-for="Input.UserName" class="form" autocomplete="username" aria-required="true" value="@Model.Login.email" />
                     <span asp-validation-for="Input.UserName" class="text-danger"></span>
                 </div>
             </td>

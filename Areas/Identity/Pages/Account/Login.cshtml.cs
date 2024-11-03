@@ -15,11 +15,26 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using NuGet.Protocol.Plugins;
 
 namespace FinalProject.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        public Login listLogin = new Login();
+
+        public class Login
+        {
+            public String email;
+            public String password;
+        }
+
+        public void Onpost()
+        {
+
+        }
+
+
         private readonly SignInManager<FinalProjectUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
