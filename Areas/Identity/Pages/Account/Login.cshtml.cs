@@ -21,18 +21,6 @@ namespace FinalProject.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        public Login listLogin = new Login();
-
-        public class Login
-        {
-            public String email;
-            public String password;
-        }
-
-        public void Onpost()
-        {
-
-        }
 
 
         private readonly SignInManager<FinalProjectUser> _signInManager;
