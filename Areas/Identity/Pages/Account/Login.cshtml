@@ -5,36 +5,81 @@
     ViewData["Title"] = "Log in";
 }
 
-<h3>@ViewData["Title"]</h3>
+<style>
 
-<form id="account" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-    <table>
-        <tr>
-            <td>Username</td>
-            <td>
-                <div class="form-floating">
-                    <input asp-for="Input.UserName" class="form" autocomplete="username" aria-required="true"  />
-                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td>
-                <div class="form-floating">
-                    <input asp-for="Input.Password" class="form" autocomplete="current-password" aria-required="true" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button id="login-submit" type="submit" class="btn btn-primary">Log in</button>
-            </td>
-        </tr>
-    </table>
-</form>
+    .form-wrapper {
+        display: flex;
+        justify-content: center; 
+        align-items: flex-start;
+        height: calc(100vh - 60px); 
+        margin-top: 60px; 
+        
+    }
+
+    .box {
+        display: flex;
+        align-items: center; 
+        justify-content: space-between; 
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        max-width: 500px; 
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    form {
+        max-width: 300px;
+        margin-right: 20px;
+    }
+
+    .logo-image {
+        width: 150px;
+        height: auto;
+    }
+
+    h3 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+
+<div class="form-wrapper">
+    <div class="box">
+        <form id="account" method="post">
+            <h3>Login</h3>
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td>
+                        <div class="form-floating">
+                            <input asp-for="Input.UserName" class="form" autocomplete="username" aria-required="true" />
+                            <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <div class="form-floating">
+                            <input asp-for="Input.Password" class="form" autocomplete="current-password" aria-required="true" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="login-submit" type="submit" class="btn btn-primary">Log in</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <img src="~/images/BU_LOGO1.png" alt="Logo" class="logo-image">
+    </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
