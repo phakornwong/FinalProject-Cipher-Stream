@@ -34,7 +34,52 @@
         }
     </tbody>
 </table>
-<a class="btn btn-primary btn-sm" href="/ComposeMail?Sender=@User.Identity.Name">Compose New Email</a>
+<a class="btn btn-primary btn-sm" href="#" onclick="checkLogin()">Compose New Email</a>
 
-<!-- "-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Did you forget to Login?</h5>
+            </div>
+            <div class="modal-body">
+                You need to log in first to compose a new email.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="redirectToLogin()">Login</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function checkLogin() {
+        var isAuthenticated = '@User.Identity.IsAuthenticated' === 'True';
+        if (isAuthenticated) {
+            window.location.href = '/ComposeMail?Sender=@User.Identity.Name';
+        } else {
+            $('#loginModal').modal('show'); 
+        }
+    }
+
+    function closeModal() {
+        $('#loginModal').modal('hide');
+    }
+
+    function redirectToLogin() {
+        window.location.href = '/Identity/Account/Login'; 
+    }
+</script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+
+
 
