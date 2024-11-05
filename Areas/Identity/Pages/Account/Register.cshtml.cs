@@ -57,14 +57,17 @@ namespace FinalProject.Areas.Identity.Pages.Account
         {
             [Required]
             [StringLength(255, ErrorMessage = "The First Name must be in between 1 to 255.", MinimumLength = 1)]
+            [RegularExpression("^[A-Za-z]+$", ErrorMessage = "The First Name can contain only letters.")]
             public string FirstName { get; set; }
 
             [Required]
             [StringLength(255, ErrorMessage = "The Last Name must be in between 1 to 255.", MinimumLength = 1)]
+            [RegularExpression("^[A-Za-z]+$", ErrorMessage = "The Last Name can contain only letters.")]
             public string LastName { get; set; }
 
             [Required]
             [StringLength(15, ErrorMessage = "The Mobile Phone must be in between 7 to 15.", MinimumLength = 7)]
+            [RegularExpression("^[0-9]+$", ErrorMessage = "The Mobile Phone can contain only numbers.")]
             public string MobilePhone { get; set; }
 
             [Required]
