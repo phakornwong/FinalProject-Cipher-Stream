@@ -74,64 +74,7 @@
             .btn2:hover {
                 background-color: #b6002d;
             }
-    </style>
-</head>
-<body>
 
-    <div class="containers">
-        <h2>Compose Email</h2>
-        @if (Model.errorMessage.Length > 0)
-        {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>@Model.errorMessage</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
-        <form  method="post">
-            <div class="form-group">
-                <label for="toEmail">To:</label>
-                <input type="text"  name="emailreceiver" required value="@Model.emailInfo.EmailReceiver">
-            </div>
-            <div class="form-group">
-                <label for="subject">Subject:</label>
-                <input type="text"  name="emailsubject" required value="@Model.emailInfo.EmailSubject">
-            </div>
-            <div class="form-group">
-                <label for="body">Message:</label>
-                <textarea id="body" name="emailmessage" rows="8" requiredvalue="@Model.emailInfo.EmailMessage"></textarea>
-            </div>
-            @if (Model.successMessage.Length > 0)
-            {
-                <div class="mb-3 row">
-                    <div class="col-sm-9">
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>@Model.successMessage</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            }
-
-            <button class="btn1" type="submit">Send Email</button>
-            <button class="btn2" type="button" onclick="openModal()">Cancel</button>
-        </form>
-    </div>
-    
-
-    <!-- Massage Box -->
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">Are you sure?</div>
-            <p>Do you really want to cancel? This action cannot be undone.</p>
-            <div class="modal-footer">
-                <button class="confirm-btn" onclick="confirmCancel()">Yes</button>
-                <button class="cancel-btn" onclick="closeModal()">No</button>
-            </div>
-        </div>
-    </div>
-
-    <style>
         .modal {
             display: none;
             position: fixed;
@@ -178,8 +121,68 @@
             color: white;
         }
     </style>
+</head>
+<body>
+    <div class="containers">
+        <h2>Compose Email</h2>
+        @if (Model.errorMessage.Length > 0)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@Model.errorMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <form id="emailForm" method="post" onsubmit="handleEmailSend(event)">
+            <div class="form-group">
+                <label for="toEmail">To:</label>
+                <input type="text" name="emailreceiver" required value="@Model.emailInfo.EmailReceiver">
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" name="emailsubject" required value="@Model.emailInfo.EmailSubject">
+            </div>
+            <div class="form-group">
+                <label for="body">Message:</label>
+                <textarea id="body" name="emailmessage" rows="8" required>@Model.emailInfo.EmailMessage</textarea>
+            </div>
+
+            
+            <div id="successMessage" class="alert alert-success" style="display: none;">
+                <strong>Email sent successfully.</strong>
+                <button type="button" class="btn-close" onclick="closeSuccessMessage()" aria-label="Close"></button>
+            </div>
+
+            <button class="btn1" type="submit">Send Email</button>
+            <button class="btn2" type="button" onclick="openModal()">Cancel</button>
+        </form>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Are you sure?</div>
+            <p>Do you really want to cancel? This action cannot be undone.</p>
+            <div class="modal-footer">
+                <button class="confirm-btn" onclick="confirmCancel()">Yes</button>
+                <button class="cancel-btn" onclick="closeModal()">No</button>
+            </div>
+        </div>
+    </div>
 
     <script>
+        function handleEmailSend(event) {
+            event.preventDefault(); 
+            const messageBox = document.getElementById("successMessage");
+            messageBox.style.display = "block";
+
+            setTimeout(() => {
+                document.getElementById("emailForm").submit();
+            }, 1000);
+        }
+
+        function closeSuccessMessage() {
+            document.getElementById("successMessage").style.display = "none";
+        }
+
         function openModal() {
             document.getElementById("myModal").style.display = "block";
         }
@@ -190,8 +193,7 @@
 
         function confirmCancel() {
             window.location.href = "/Index";
-        }
+            }
     </script>
-
 </body>
 </html>
