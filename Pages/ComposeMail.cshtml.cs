@@ -25,6 +25,11 @@ namespace FinalProject.Pages
                 errorMessage = "All the fields are required";
                 return;
             }
+            else if(emailInfo.EmailReceiver == User.Identity.Name)
+            {
+                errorMessage = "You are attempting to send an email to yourself.";
+                return;
+            }
 
             try
             {
