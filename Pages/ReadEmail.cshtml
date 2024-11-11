@@ -1,6 +1,7 @@
 ﻿@page
 @model FinalProject.Pages.ReadEmailModel
 @{
+    ViewData["Title"] = "Email Viewer";
 }
 
 <!DOCTYPE html>
@@ -15,6 +16,7 @@
             margin: 0;
             padding: 0;
         }
+
         .email-container {
             max-width: 600px;
             margin: 20px auto;
@@ -23,22 +25,27 @@
             border-radius: 8px;
             background-color: #f9f9f9;
         }
+
         .email-header {
             font-size: 1.2em;
             margin-bottom: 15px;
         }
+
         .email-subject {
             font-weight: bold;
             color: #333;
         }
+
         .email-from {
             font-style: italic;
             color: #666;
             margin-bottom: 10px;
         }
+
         .email-body {
             margin-top: 20px;
         }
+
         .button {
             padding: 10px 20px;
             color: white;
@@ -53,18 +60,29 @@
 </head>
 <body>
 
-    <div class="email-container">
-        <div class="email-header">
-            <span class="email-subject">[หัวข้อเมล]</span>
-        </div>
-        <div class="email-from">
-            จาก: [ผู้ส่ง]
-        </div>
-        <div class="email-body">
-            <p>[เนื้อหาเมล]</p>
-        </div>
-        <button class="button">Back</button>
-    </div>
+    @if (Model.listEmails.Count == 0)
+    {
+        <p>ไม่มีอีเมลในกล่องจดหมาย</p>
+    }
+    else
+    {
+        @foreach (var email in Model.listEmails)
+        {
+            <div class="email-container">
+                <div class="email-header">
+                    <span class="email-subject">หัวข้อ: @email.EmailSubject</span>
+                </div>
+                <div class="email-from">
+                    จาก: @email.EmailSender
+                </div>
+                <div class="email-body">
+                    <p>@email.EmailMessage</p>
+                </div>
+                <button class="button" onclick="window.history.back()">Back</button>
+            </div>
+        }
+    }
 
 </body>
 </html>
+

@@ -51,7 +51,6 @@ namespace FinalProject.Pages
                                 reademailInfo.EmailDate = reader.GetDateTime(3).ToString();
                                 reademailInfo.EmailIsRead = "" + reader.GetInt32(4);
                                 reademailInfo.EmailSender = reader.GetString(6);
-                                reademailInfo.EmailReceiver = reader.GetString(5);
 
                                 listEmails.Add(reademailInfo);
                             }
@@ -73,7 +72,7 @@ namespace FinalProject.Pages
         public String EmailDate;
         public String EmailIsRead;
         public String EmailSender;
-        public String EmailReceiver;
+
     }
 
 }
