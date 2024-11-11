@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FinalProject.Pages
 {
-public class ReadEmailModel : PageModel 
-    { 
+    public class ReadEmailModel : PageModel
+    {
         public EmailInfo emailInfo = new EmailInfo();
         public String errorMessage = "";
         public String successMessage = "";
+        private SqlConnection connection;
 
         public void OnGet()
         {
@@ -37,12 +38,23 @@ public class ReadEmailModel : PageModel
                                 emailInfo.EmailSender = reader.GetString(6);
                                 emailInfo.EmailReceiver = reader.GetString(5);
 
-                                
+
 
                             }
                         }
                     }
+
+                    // อัปเดตค่า emailisread เป็น 1
+                    String updateSql = "UPDATE emails SET emailisread = 1 WHERE email_id = @emailid";
+
+                    using (SqlCommand updateCommand = new SqlCommand(updateSql, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@emailid", emailid);
+                        updateCommand.ExecuteNonQuery();
+                    }
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -51,7 +63,7 @@ public class ReadEmailModel : PageModel
 
         }
 
-    
-        }
+
+    }
 }
 
