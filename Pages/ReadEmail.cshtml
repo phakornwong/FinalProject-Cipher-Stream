@@ -44,6 +44,9 @@
 
         .email-body {
             margin-top: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
         }
 
         .button {
@@ -60,25 +63,18 @@
 </head>
 <body>
 
-    @if (Model.listEmails.Count == 0)
-    {
-    }
-    else
-    {
-        var email = Model.listEmails[0];
-        <div class="email-container">
-            <div class="email-header">
-                <span class="email-subject"><h3>Subject: @email.EmailSubject</h3></span>
-            </div>
-            <div class="email-from">
-                From: @email.EmailSender
-            </div>
-            <div class="email-body">
-                <p>@email.EmailMessage</p>
-            </div>
-            <button class="button" onclick="window.history.back()">Back</button>
+    <div class="email-container">
+        <div class="email-header">
+            <span class="email-subject">@Model.emailInfo.EmailSubject</span>
         </div>
-    }
+        <div class="email-from">
+            From: @Model.emailInfo.EmailSender
+        </div>
+        <div class="email-body">
+            <p>@Model.emailInfo.EmailMessage</p>
+        </div>
+        <button class="button" onclick="window.history.back()">Back</button>
+    </div>
 
 </body>
 </html>
