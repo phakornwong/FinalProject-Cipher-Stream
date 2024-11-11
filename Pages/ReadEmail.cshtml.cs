@@ -1,4 +1,4 @@
-using FinalProject.Areas.Identity.Data;
+﻿using FinalProject.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -18,8 +18,9 @@ namespace FinalProject.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet(string emailId)
         {
+            listEmails.Clear();
             try
             {
                 String connectionString = "Server=tcp:cipherstream.database.windows.net,1433;Initial Catalog=emailsystem;Persist Security Info=False;User ID=cist;Password=@Cipherstream;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
@@ -27,17 +28,7 @@ namespace FinalProject.Pages
                 {
                     connection.Open();
 
-                    string username = "";
-                    if (User.Identity.Name == null)
-                    {
-                        username = "";
-                    }
-                    else
-                    {
-                        username = User.Identity.Name;
-                    }
-
-                    String sql = "SELECT * FROM emails WHERE emailreceiver='" + username + "'";
+                    String sql = "SELECT * FROM emails WHERE email_id=@emailid";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
