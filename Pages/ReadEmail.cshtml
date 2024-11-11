@@ -1,6 +1,7 @@
 ﻿@page
 @model FinalProject.Pages.ReadEmailModel
 @{
+    ViewData["Title"] = "Email Viewer";
 }
 
 <!DOCTYPE html>
@@ -15,6 +16,7 @@
             margin: 0;
             padding: 0;
         }
+
         .email-container {
             max-width: 600px;
             margin: 20px auto;
@@ -23,22 +25,27 @@
             border-radius: 8px;
             background-color: #f9f9f9;
         }
+
         .email-header {
             font-size: 1.2em;
             margin-bottom: 15px;
         }
+
         .email-subject {
             font-weight: bold;
             color: #333;
         }
+
         .email-from {
             font-style: italic;
             color: #666;
             margin-bottom: 10px;
         }
+
         .email-body {
             margin-top: 20px;
         }
+
         .button {
             padding: 10px 20px;
             color: white;
@@ -68,3 +75,4 @@
 
 </body>
 </html>
+
