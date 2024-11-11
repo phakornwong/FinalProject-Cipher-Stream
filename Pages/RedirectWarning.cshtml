@@ -1,0 +1,24 @@
+﻿@page
+@model FinalProject.Pages.RedirectWarningModel
+
+@{
+    ViewData["Title"] = "Redirect Warning";
+    string errorMessage = TempData["ErrorMessage"]?.ToString() ?? "Unknown error!";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+        setTimeout(function () {
+            window.location.href = "/Index";
+        }, 3000);
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 20%; color: red;">@errorMessage</h1>
+    <p style="text-align: center;">You are being redirected to the main page...</p>
+</body>
+</html>
+
