@@ -1,0 +1,70 @@
+﻿@page
+@model FinalProject.Pages.ReadEmailModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .email-header {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .email-subject {
+            font-weight: bold;
+            color: #333;
+        }
+        .email-from {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .email-body {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="email-container">
+        <div class="email-header">
+            <span class="email-subject">[หัวข้อเมล]</span>
+        </div>
+        <div class="email-from">
+            จาก: [ผู้ส่ง]
+        </div>
+        <div class="email-body">
+            <p>[เนื้อหาเมล]</p>
+        </div>
+        <button class="button">Back</button>
+    </div>
+
+</body>
+</html>
