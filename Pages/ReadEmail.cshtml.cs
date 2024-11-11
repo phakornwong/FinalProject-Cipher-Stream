@@ -1,5 +1,3 @@
-
-
 using FinalProject.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,11 +9,11 @@ namespace FinalProject.Pages
     public class ReadEmailModel : PageModel
     {
 
-        public List<EmailInfo> listEmails = new List<EmailInfo>();
+        public List<ReadEmailInfo> listEmails = new List<ReadEmailInfo>();
 
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<ReadEmailModel> _logger;
 
-        public ReadEmailModel(ILogger<IndexModel> logger)
+        public ReadEmailModel(ILogger<ReadEmailModel> logger)
         {
             _logger = logger;
         }
@@ -46,16 +44,16 @@ namespace FinalProject.Pages
                         {
                             while (reader.Read())
                             {
-                                EmailInfo emailInfo = new EmailInfo();
-                                emailInfo.EmailID = "" + reader.GetInt32(0);
-                                emailInfo.EmailSubject = reader.GetString(1);
-                                emailInfo.EmailMessage = reader.GetString(2);
-                                emailInfo.EmailDate = reader.GetDateTime(3).ToString();
-                                emailInfo.EmailIsRead = "" + reader.GetInt32(4);
-                                emailInfo.EmailSender = reader.GetString(6);
-                                emailInfo.EmailReceiver = reader.GetString(5);
+                                ReadEmailInfo reademailInfo = new ReadEmailInfo();
+                                reademailInfo.EmailID = "" + reader.GetInt32(0);
+                                reademailInfo.EmailSubject = reader.GetString(1);
+                                reademailInfo.EmailMessage = reader.GetString(2);
+                                reademailInfo.EmailDate = reader.GetDateTime(3).ToString();
+                                reademailInfo.EmailIsRead = "" + reader.GetInt32(4);
+                                reademailInfo.EmailSender = reader.GetString(6);
+                                reademailInfo.EmailReceiver = reader.GetString(5);
 
-                                listEmails.Add(emailInfo);
+                                listEmails.Add(reademailInfo);
                             }
                         }
                     }
@@ -67,7 +65,7 @@ namespace FinalProject.Pages
             }
         }
     }
-    public class EmailInfo
+    public class ReadEmailInfo
     {
         public String EmailID;
         public String EmailSubject;
