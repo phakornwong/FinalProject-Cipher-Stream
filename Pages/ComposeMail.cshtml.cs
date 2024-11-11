@@ -39,7 +39,7 @@ namespace FinalProject.Pages
 
                     String sql = "INSERT INTO emails" +
                                     "(emailreceiver, emailsubject, emailmessage, emailisread, emailsender, emaildate) VALUES " +
-                                    "(@emailreceiver, @emailsubject, @emailmessage, @emailisread, @emailsender, GETDATE());";
+                                    "(@emailreceiver, @emailsubject, @emailmessage, @emailisread, @emailsender, @emaildate);";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -47,7 +47,7 @@ namespace FinalProject.Pages
                         command.Parameters.AddWithValue("@emailsubject", emailInfo.EmailSubject);
                         command.Parameters.AddWithValue("@emailmessage", emailInfo.EmailMessage);
                         command.Parameters.AddWithValue("@emailisread", Convert.ToInt32(emailInfo.EmailIsRead));
-                        command.Parameters.AddWithValue("@emailsender", username);  // ให้ emailsender เป็น username ของคนที่ login
+                        command.Parameters.AddWithValue("@emailsender", username);  
                         command.Parameters.AddWithValue("@emaildate", DateTime.Now);
 
                         command.ExecuteNonQuery();
