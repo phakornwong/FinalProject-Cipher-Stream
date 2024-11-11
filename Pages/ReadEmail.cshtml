@@ -62,25 +62,22 @@
 
     @if (Model.listEmails.Count == 0)
     {
-        <p>ไม่มีอีเมลในกล่องจดหมาย</p>
     }
     else
     {
-        @foreach (var email in Model.listEmails)
-        {
-            <div class="email-container">
-                <div class="email-header">
-                    <span class="email-subject">หัวข้อ: @email.EmailSubject</span>
-                </div>
-                <div class="email-from">
-                    จาก: @email.EmailSender
-                </div>
-                <div class="email-body">
-                    <p>@email.EmailMessage</p>
-                </div>
-                <button class="button" onclick="window.history.back()">Back</button>
+        var email = Model.listEmails[0];
+        <div class="email-container">
+            <div class="email-header">
+                <span class="email-subject"><h3>Subject: @email.EmailSubject</h3></span>
             </div>
-        }
+            <div class="email-from">
+                From: @email.EmailSender
+            </div>
+            <div class="email-body">
+                <p>@email.EmailMessage</p>
+            </div>
+            <button class="button" onclick="window.history.back()">Back</button>
+        </div>
     }
 
 </body>
