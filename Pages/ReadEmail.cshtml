@@ -55,15 +55,15 @@
 
     <div class="email-container">
         <div class="email-header">
-            <span class="email-subject">[หัวข้อเมล]</span>
+            <span class="email-subject">@Model.emailInfo.EmailSubject</span>
         </div>
         <div class="email-from">
-            จาก: [ผู้ส่ง]
+            From: @Model.emailInfo.EmailSender
         </div>
         <div class="email-body">
-            <p>[เนื้อหาเมล]</p>
+            <p>@Model.emailInfo.EmailMessage</p>
         </div>
-        <button class="button">Back</button>
+        <button class="button" onclick="window.history.back()">Back</button>
     </div>
 
 </body>
