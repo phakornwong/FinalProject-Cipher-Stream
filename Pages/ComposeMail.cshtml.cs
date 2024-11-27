@@ -25,12 +25,7 @@ namespace FinalProject.Pages
                 errorMessage = "All the fields are required";
                 return;
             }
-            else if(emailInfo.EmailReceiver == User.Identity.Name)
-            {
-                errorMessage = "You are attempting to send an email to yourself.";
-                return;
-            }
-
+            
             try
             {
                 String connectionString = "Server=tcp:cipherstream.database.windows.net,1433;Initial Catalog=emailsystem;Persist Security Info=False;User ID=cist;Password=@Cipherstream;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
