@@ -125,6 +125,7 @@
 <body>
     <div class="containers">
         <h2>Compose Email</h2>
+        <input type="hidden" id="timezoneOffset" name="timezoneOffset" />
         @if (Model.errorMessage.Length > 0)
         {
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -194,6 +195,10 @@
         function confirmCancel() {
             window.location.href = "/Index";
             }
+        
+        // ตั้งค่าเวลาเครื่อง Local ลงใน input hidden
+        document.getElementById('timezoneOffset').value = new Date().getTimezoneOffset();
+    
     </script>
 </body>
 </html>

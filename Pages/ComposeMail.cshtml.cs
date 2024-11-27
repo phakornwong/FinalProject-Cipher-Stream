@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 
@@ -19,27 +19,25 @@ namespace FinalProject.Pages
             emailInfo.EmailSubject = Request.Form["emailsubject"];
             emailInfo.EmailMessage = Request.Form["emailmessage"];
 
+           
             if (emailInfo.EmailReceiver.Length == 0 || emailInfo.EmailSubject.Length == 0 ||
                emailInfo.EmailMessage.Length == 0)
             {
                 errorMessage = "All the fields are required";
                 return;
             }
-            else if(emailInfo.EmailReceiver == User.Identity.Name)
-            {
-                errorMessage = "You are attempting to send an email to yourself.";
-                return;
-            }
-
+            
             try
             {
+                
+
                 String connectionString = "Server=tcp:cipherstream.database.windows.net,1433;Initial Catalog=emailsystem;Persist Security Info=False;User ID=cist;Password=@Cipherstream;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    // �֧���ͼ������ login ����
+                    // ´Ö§ª×èÍ¼Ùéãªé·Õè login ÍÂÙè
                     string username = User.Identity.Name ?? "";
 
                     String sql = "INSERT INTO emails" +
@@ -48,12 +46,18 @@ namespace FinalProject.Pages
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
+                        // โหลดข้อมูล Time Zone ของไทย
+                        TimeZoneInfo thaiTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Bangkok");
+
+                        // แปลงเวลาปัจจุบันเป็นเวลาไทย
+                        DateTime thaiDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, thaiTimeZone);
+
                         command.Parameters.AddWithValue("@emailreceiver", emailInfo.EmailReceiver);
                         command.Parameters.AddWithValue("@emailsubject", emailInfo.EmailSubject);
                         command.Parameters.AddWithValue("@emailmessage", emailInfo.EmailMessage);
                         command.Parameters.AddWithValue("@emailisread", Convert.ToInt32(emailInfo.EmailIsRead));
                         command.Parameters.AddWithValue("@emailsender", username);  
-                        command.Parameters.AddWithValue("@emaildate", DateTime.Now);
+                        command.Parameters.AddWithValue("@emaildate", thaiDateTime);
 
                         command.ExecuteNonQuery();
                     }
